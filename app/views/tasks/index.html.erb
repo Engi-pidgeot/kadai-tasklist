@@ -1,8 +1,26 @@
 <h1>タスク一覧</h1>
 <ul>
-<% @tasks.each do |task|%>
-  <li><%= link_to "#{task.id}番目のタスク", task_path(id: task.id) %>---- <%= "#{task.content}" %></li>
-<%end%>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>進捗</th>
+        <th>内容</th>
+      </tr>
+    </thead>
+<% @tasks.each do |task|%>    
+    <tbody>
+      <td><%= link_to task.id, task_path(id: task.id)%></td>
+      <td><%= task.status%></td>
+      <td><%= task.content%></td>
+    </tbody>
+  <%end%>    
+  </table>
+  
+  
+
+
 </ul>
 
 <%= link_to "新しいタスクを登録する", new_task_path %>

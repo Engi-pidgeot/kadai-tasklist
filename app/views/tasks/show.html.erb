@@ -1,6 +1,18 @@
 <h1>idが「<%= @task.id %>」のタスクの詳細</h1>
-
-<p><%= @task.content %></p>
+<table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>進捗</th>
+        <th>内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <td><%= link_to @task.id, task_path(id: @task.id)%></td>
+      <td><%= @task.status%></td>
+      <td><%= @task.content%></td>
+    </tbody>
+  </table>
 
 <%= link_to "タスク一覧", tasks_path %><br>
 <%= link_to "タスクを編集", edit_task_path %><br>

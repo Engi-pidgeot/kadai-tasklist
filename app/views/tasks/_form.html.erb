@@ -1,0 +1,25 @@
+<%= form_for(@task) do |f|%>
+
+    <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> タスク登録に失敗しました</h2>
+
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      
+    </div>
+  <% end %>
+  
+  
+  <%= f.label :status, "進捗"%>
+  <%= f.select :status, [['未完','未完了'],['進行中','進行中'],['完了','完了']] %><br>
+
+
+  <%= f.label :content, "タスク内容"%>
+  <%= f.text_field :content %>
+  
+  <%= f.submit "登録"%>
+<% end %>
