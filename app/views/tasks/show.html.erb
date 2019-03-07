@@ -1,5 +1,6 @@
 <h1>idが「<%= @task.id %>」のタスクの詳細</h1>
-<table border="1">
+
+<table class="table table-borderd" border="1" bordercolor="#33568e">
     <thead>
       <tr>
         <th>ID</th>
@@ -14,6 +15,5 @@
     </tbody>
   </table>
 
-<%= link_to "タスク一覧", tasks_path %><br>
-<%= link_to "タスクを編集", edit_task_path %><br>
-<%= link_to "タスクを削除", task_path, method: :delete, data: {confirm: "本当に削除してよろしいですか？"}%>
+<%= link_to "タスクを編集", edit_task_path, class: "btn btn-success" %>
+<%= link_to "タスクを削除", task_path, method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, class: "btn btn-danger"%>
