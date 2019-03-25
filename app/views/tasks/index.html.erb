@@ -14,10 +14,14 @@
       <td><%= task.status%></td>
       <td><%= task.content%></td>
     </tbody>
-  <%end%>    
+  <% end%>
   </table>
   <%= paginate @tasks, class:"horizontal" %>
-  <%= link_to "新しいタスクを登録する", new_task_path ,class:"btn btn-primary"%>
+  
+  <%= link_to new_task_path ,class:"btn btn-primary" do%>
+    <span class="glyphicon glyphicon-pencil"></span>  新しいタスクを登録する
+  <% end %>
+  
 <% else %>
   <p>まだタスクが登録されていません</p>
 <% end %>
