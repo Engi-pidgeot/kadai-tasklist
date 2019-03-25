@@ -3,10 +3,12 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all.page(params[:page])
+    #使用しない
   end
 
   def show
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:id])
+    @count_tasks = current_user.tasks.count
   end
 
   def new

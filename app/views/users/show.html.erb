@@ -2,14 +2,26 @@
   <aside class="col-xs-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @user.name%></h3>
+        <h3 class="panel-title"><%= current_user.name %></h3>
       </div>
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
   </aside>
-  <div>
-    
+  
+  <div class="col-xs-8">
+    <table class="table" border="1" bordercolor="#33568e">　
+      <thead>
+        <tr>
+          <th>作成したタスクの数</th>
+          <th>ユーザ登録日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <td><%= link_to @count_tasks, root_path%></td>
+        <td><%= current_user.created_at%></td>
+      </tbody>
+    </table>
   </div>
 </div>
