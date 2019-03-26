@@ -2,6 +2,7 @@ class TasksController < ApplicationController
 before_action :set_task, only: [:show, :edit, :update, :destroy]
 before_action :require_user_logged_in, only: [:new, :edit, :show]
 
+include SessionsHelper
 
   def index
     if logged_in?
@@ -19,7 +20,6 @@ before_action :require_user_logged_in, only: [:new, :edit, :show]
       flash.now[:danger] = "タスクの登録に失敗しました。"
       render :new
     end
-    
   end
   
   def new
@@ -40,12 +40,10 @@ before_action :require_user_logged_in, only: [:new, :edit, :show]
       flash.now[:danger] = "タスクの変更に失敗しました。"
       render :edit
     end
-      
   end
   
   def destroy
     @task.destroy
-    
     flash[:success] = "メッセージは無事削除されました。"
     redirect_to tasks_url
   end
@@ -57,7 +55,10 @@ before_action :require_user_logged_in, only: [:new, :edit, :show]
   end
   
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
+    if current_user.id != @task.user_id
+     flash[:danger] = "指定されたタスクの作成者ではありません"
+     redirect_to root_path
+    end
   end
-
 end
